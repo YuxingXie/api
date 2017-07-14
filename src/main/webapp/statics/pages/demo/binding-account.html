@@ -1,0 +1,52 @@
+<div ui-content-for="title">
+    <span>填写绑定提现账号的信息</span>
+</div>
+
+<div class="scrollable">
+    <div class="scrollable-content section">
+        <div class="alert alert-info">请如实填写，否则无法提现！</div>
+        <form name="form" role="form" ng-submit='bindingAccount(account)'>
+            <fieldset>
+                <legend></legend>
+                <div class="form-group has-success has-feedback">
+                    <label>账号类型(目前仅支持支付宝账号类型)</label>
+                    <select class="form-control" name="cardSort" ng-model="account.cardSort" ng-required="true">
+                        <option value="3">支付宝账号</option>
+                    </select>
+                </div>
+                <div class="form-group has-success has-feedback">
+                    <label>账号登录名(支付宝账号登录名为邮箱,如果您的账号为手机，请开通邮箱账号，如何开通请点击<a
+                            href="#/how_alipay_account_binding_email">这里</a>查看)</label>
+                    <input type="email" ng-required="true" name="accountLoginName"
+                           ng-model="account.accountLoginName"
+                           class="form-control"
+                           placeholder="邮箱账号">
+                    <div class="text-danger" ng-if="form.accountLoginName.$dirty&&form.accountLoginName.$invalid">
+                        必须是邮箱账号
+                    </div>
+                </div>
+                <div class="form-group has-success has-feedback">
+                    <label>账号名(支付宝账号名，个人账号为真实姓名，公司账号为公司名称)</label>
+                    <input type="text" ng-required="true" name="accountName"
+                           ng-model="account.accountName"
+                           class="form-control"
+                           placeholder="个人账号为真实姓名，公司账号为公司名称">
+                </div>
+
+
+            </fieldset>
+            <hr>
+
+            <button type="submit" class="btn btn-primary btn-block" ng-disabled="form.$invalid"
+                    ng-class="{'fa fa-check':form.$valid}">
+                绑定
+            </button>
+
+            <!--<div ui-content-for="navbarAction">-->
+            <!--<a class='btn' ng-click='register()'>Login</a>-->
+            <!--</div>-->
+
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,51 @@
+NameError: .box-shadow is undefined in /Users/ haifeng /IT/
+
+01
+_Study /github_projects/ js_framework /public/ js /lib/ bootstrap
+
+/
+3.0
+.0
+/css/
+progress-bars.less on line
+
+45
+,
+column
+
+3
+:
+
+44
+border-radius:
+
+@border-radius-base ;
+45
+.
+
+box-shadow
+(
+inset
+
+0
+1
+px
+
+2
+px
+
+rgba
+(
+0
+,
+0
+,
+0
+,
+.1
+)
+)
+;
+46
+}
+

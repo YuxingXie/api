@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+/logs
+target/
+/.idea/
+/.idea/libraries/
+api.iml
+/src/main/webapp/statics/temp/

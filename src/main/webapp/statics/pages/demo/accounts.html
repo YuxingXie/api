@@ -1,0 +1,92 @@
+<div ui-content-for="title" ng-init="getAccounts();getMeasureRecords();getTransSubmitTotalFee();getHuanxunBankNames();">
+    <span>银行账号信息</span>
+</div>
+
+<div class="scrollable-content section">
+    <div ng-if="!isEmptyObject(session.loginUser)" class="list-group"
+         ng-init="bankAccount=session.loginUser.bankAccount;bankAccountChecked=bankAccount&&bankAccount.accountName&&bankAccount.idCardNo&&bankAccount.phone&&bankAccount.bankName&&bankAccount.province&&bankAccount.city&&bankAccount.openingBank&&bankAccount.accountNo">
+        <div class="alert alert-info margin-top-10">
+            <ul>
+                <li>以下是银行账号信息</li>
+                <li>如需更改信息点击<a href="#/personal_setting">这里</a></li>
+            </ul>
+        </div>
+        <div class="padding-top-5">
+            <span class="label label-default"> 收款户名：</span>
+            <span class="text-primary" ng-class="{'text-danger':!bankAccount.accountName}"
+                  ng-bind="bankAccount.accountName?bankAccount.accountName:'*缺少收款账户名'">
+                    </span>
+        </div>
+        <div class="padding-top-5">
+            <span class="label label-default "> 身份证号：</span>
+            <span class=" text-primary" ng-class="{'text-danger':!bankAccount.idCardNo}"
+                  ng-bind="bankAccount.idCardNo?bankAccount.idCardNo:'*缺少身份证号'" placeholder="身份证号"/>
+        </div>
+        <div class="padding-top-5">
+            <span class="label label-default "> 手机号：</span>
+            <span class="text-primary" ng-class="{'text-danger':!bankAccount.phone}"
+                  ng-bind="bankAccount.phone?bankAccount.phone:'*缺少手机号'"></span>
+        </div>
+        <div class="padding-top-5">
+            <span class="label label-default "> 收款银行：</span>
+            <span class="text-primary" ng-class="{'text-danger':!bankAccount.bankName}"
+                  ng-bind="bankAccount.bankName?bankAccount.bankName:'*缺少收款银行'"></span>
+        </div>
+        <div class="padding-top-5">
+            <span class="label label-default "> 收款账号省份：</span>
+            <span class="text-primary" ng-class="{'text-danger':!bankAccount.province}"
+                  ng-bind="bankAccount.province?bankAccount.province:'*缺少收款账号省份'"></span>
+        </div>
+        <div class="padding-top-5">
+            <span class="label label-default "> 收款账号地市：</span>
+            <span class="text-primary" ng-class="{'text-danger':!bankAccount.city}"
+                  ng-bind="bankAccount.city?bankAccount.city:'*缺少收款账号地市'"></span>
+        </div>
+        <div class="padding-top-5">
+            <span class="label label-default "> 收款账号开户行：</span>
+            <span class="text-primary" ng-class="{'text-danger':!bankAccount.openingBank}"
+                  ng-bind="bankAccount.openingBank?bankAccount.openingBank:'*缺少收款账号开户行'"></span>
+        </div>
+        <div class="padding-top-5">
+            <span class="label label-default "> 收款账号：</span>
+            <span class="text-primary" ng-class="{'text-danger':!bankAccount.accountNo}"
+                  ng-bind="bankAccount.accountNo?bankAccount.accountNo:'*缺少收款账号'"></span>
+        </div>
+        <div ng-if="bankAccountChecked">
+            <form name="form" ng-submit="submitHuanxunTrans(trans)">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <label class="control-label">提取金额（可用余额：<span class="fa fa-rmb"
+                                                                     ng-bind="totalMembershipMeasures-transSubmitTotalFee|number:2"></span>）</label>
+                        <input type="text" currency_format name="fee" ng-model="trans.fee"
+                               required="required" ng-required="true" class="form-control has-error"
+                               max_fee="{{totalMembershipMeasures-transSubmitTotalFee}}">
+                        <div ng-show="form.fee.$error.currencyFormat">输入正确的金额数</div>
+                        <div ng-show="form.fee.$error.feeRange">
+                            超过了可用余额{{totalMembershipMeasures-transSubmitTotalFee|number:2}}
+                        </div>
+                    </div>
+                    <div class="list-group-item" ng-if="form.fee.$valid&&trans.fee>50000">
+                        <label class="control-label">备注</label>
+                        <input type="text" name="note" ng-model="trans.note" placeholder="填写备注"
+                               required="required" ng-required="true" class="form-control has-error">
+                        <div ng-show="form.note.$error.required">金额大于等于50000时备注必填</div>
+                    </div>
+                </div>
+                <button type="submit" class="margin-top-10 btn btn-primary btn-block "
+                        ng-class="{'fa fa-check':form.$valid&&form.$dirty}"
+                        ng-disabled="form.$invalid">
+                    确 认
+                </button>
+
+            </form>
+        </div>
+
+
+        <a href="#/personal_setting" class="margin-top-10 btn btn-primary btn-block" ng-if="!bankAccountChecked">
+            您的收款账号不完整，点击完善</a>
+        </button>
+    </div>
+
+</div>
+
