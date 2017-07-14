@@ -57,7 +57,7 @@
             <artifactId>gson</artifactId>
             <version>2.1</version>
         </dependency>
-        <!--alipay dependencies begin-->
+        <!-- alipay dependencies begin -->
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
