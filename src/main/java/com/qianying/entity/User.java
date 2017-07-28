@@ -65,7 +65,8 @@ public class User {
     private Boolean disabled;//禁用
     @Field(value = "idCardNo")
     private String idCardNo;
-
+    @Field
+    private String photo;
     public String getId() {
         return id;
     }
@@ -184,5 +185,13 @@ public class User {
 
     public void setIdCardNo(String idCardNo) {
         this.idCardNo = idCardNo;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }
